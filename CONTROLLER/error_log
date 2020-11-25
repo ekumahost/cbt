@@ -1,0 +1,10 @@
+[11-May-2017 00:50:13 Europe/London] PHP Fatal error:  Uncaught Error: Class 'ZipArchive' not found in /home/cbtugarsoft/public_html/CONTROLLER/Classes/PHPExcel/Writer/Excel2007.php:220
+Stack trace:
+#0 /home/cbtugarsoft/public_html/CONTROLLER/ExportResultAPI.php(48): PHPExcel_Writer_Excel2007->save('../CONTROLLER/e...')
+#1 {main}
+  thrown in /home/cbtugarsoft/public_html/CONTROLLER/Classes/PHPExcel/Writer/Excel2007.php on line 220
+[11-May-2017 01:10:11 Europe/London] PHP Fatal error:  Uncaught Error: Class 'ZipArchive' not found in /home/cbtugarsoft/public_html/CONTROLLER/Classes/PHPExcel/Writer/Excel2007.php:220
+Stack trace:
+#0 /home/cbtugarsoft/public_html/CONTROLLER/ExportResultAPI.php(48): PHPExcel_Writer_Excel2007->save('../CONTROLLER/e...')
+#1 {main}
+  thrown in /home/cbtugarsoft/public_html/CONTROLLER/Classes/PHPExcel/Writer/Excel2007.php on line 220

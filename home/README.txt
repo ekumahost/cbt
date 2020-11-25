@@ -1,0 +1,1 @@
+create a 404.html page and drop in this folder for handling 404

@@ -1,0 +1,1 @@
+<i><font color="red">Please log on to school management system to view calendar </font> </i>
