@@ -1,9 +1,9 @@
-<?php 
+<?php
 // switch page based on Get Tera
- 
+
 if(isset($_GET['Tera'])){
 	// we are ready to switch
-	
+
 	switch($_GET['Tera']){
 		case 'Home':
 require_once('view/home/index.php');
@@ -75,4 +75,3 @@ require_once('view/home/404.php');
 						</div>';
 }
 
-?>

@@ -5,14 +5,14 @@ $paper_id = $tool->DecodeToken($_GET['token']);
 ?>
 
 <div class="block-heading-two text-center">
-<h3><span> Computer Based Exam</span></h3>
-</div>	
+<h3><span> Computer Based Test</span></h3>
+</div>
 Welcome <b><?php echo $Student.' ('.StudentUserName.')';?></b>
     You can only take exams for <b><?php echo $StudentClass;?>.</b>
 
 
 
-<?php	
+<?php
 												$pulls = $pdo->prepare("SELECT * FROM `cbt_exams` WHERE `id`='$paper_id'");
                                                  $pulls->execute();
                                                  $exam = $pulls->fetch(PDO::FETCH_ASSOC);
@@ -32,9 +32,9 @@ Welcome <b><?php echo $Student.' ('.StudentUserName.')';?></b>
 								$type=$tool->dbstr($col="name",$table="cbt_exams_type",$_sql="`id` = '$type'");
 								$grade=$tool->dbstr($col="grades_desc",$table="grades",$_sql="`grades_id` = '$grade'");
 
-								
+
 	if($exam['status']==0){
-$status = '<span class="label label-primary">Up Coming</span>';						
+$status = '<span class="label label-primary">Up Coming</span>';
 }elseif($exam['status']==1){
 $status = '<span class="label label-success">On Going</span>';
 }elseif($exam['status']==2){
@@ -57,7 +57,7 @@ $status = '<span class="label label-default">Completed</span>';
 									  <p>Status: <?php echo $status;?> </p>
 								        <p>Level: <?php echo $grade;?> </p>
 
-                                      <p>my result: 
+                                      <p>my result:
 
                         <a href="?Tera=ExamResult&token=<?php $tool->EncodeToken($paper_id);?>" target="new"> View </a>
 
@@ -76,11 +76,11 @@ $status = '<span class="label label-default">Completed</span>';
 										<hr class="br-green" />
 									</div>
 								</div>
-								
+
 								</div>
 								<br>
 								 <br><br>
-								 
+
 
 						<form id="PaperForm" method="post" class="form-horizontal" role="form">
                         <input type="hidden" name="paper_id" value="<?php echo $paper_id;?>"> </input>
@@ -90,17 +90,17 @@ $status = '<span class="label label-default">Completed</span>';
                     <?php if($exam['status']==1){?>
 					<a href="#" class="btn btn-white">Cancel</a>  &nbsp; <button type="submit" class="btn btn-color">START EXAM</button><span class="result"> </span>
 					<?php }else{echo '<font color="red">This exam cannot be started again</font>';}?>
-							
+
 							</form>
 							</div>
-						</div>												
+						</div>
 <script type="text/javascript">
     $('#PaperForm').submit(function() {
 	        // validate form if empty
 		$(".result").html('..just chill, lets prepare your clock! <img src="../CORDOVA/img/c_loader_gr.gif" />');
 		$.post("../CONTROLLER/PaperAPI.php", $("#PaperForm").serialize(), function(response) {
 			$('.result').html(response);
-		}); 
+		});
       return false;
     });
   </script>

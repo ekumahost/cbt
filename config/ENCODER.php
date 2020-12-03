@@ -9,5 +9,4 @@ $part_url = explode("/", $page_name);
 //$page_name=$part_url[1];// this is asumed index.php or the string after first / local host
 $page_name=$part_url[2];// this is asumed index.php or the string after first / local host
 $page_namer = end($part_url); // this is amazing// the string after last /
-//echo $page_name; exit;
-?>
+//echo 'pg'.$page_name; exit;

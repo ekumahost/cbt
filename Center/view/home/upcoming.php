@@ -1,27 +1,28 @@
 <?php  define('CTitler', 'Home');// anywhere?>
 
-		
+
 					<?php //echo StudentID;?>
 					<b>Welcome, <?php echo $Student.' ('.StudentUserName.')';?>
-					Your class is <?php echo $StudentClass;?></b>
+<!--					Your class is --><?php //echo $StudentClass;?>
+                    </b>
 
 
 					<div class="block-heading-two text-center">
-						<h3><span> Available Papers</span></h3>
-						<?php 
-						
+						<h3><span> Available Tests</span></h3>
+						<?php
+
 						//echo $CurrentTerm;
 						 $countExam = $tool->MyCount("SELECT COUNT(subject) AS num FROM `cbt_exams` WHERE `grade`='$student_grade_year_grade' AND year='$CurrentYear' AND `term`='$CurrentTerm' AND `status`='0'");
 						if($countExam>0){
-							$tool->Success("We found $countExam CBT for you.");
+							$tool->Success("We found $countExam Test(s) for you.");
 						}else{
-						$tool->Error("We found 0 CBT for you. That hurts!");
+						$tool->Error("We found 0 Test(s) for you. That hurts!");
 
-							
+
 						}
 						?>
-						
-					</div>	
+
+					</div>
 					<div class=" table-responsive">
 											<table width="100%" class="table table-bordered">
 												<!-- Table Header -->
@@ -38,9 +39,9 @@
 													</tr>
 												</thead>
 												<tbody>
-												<?php	
+												<?php
 												$stmt = $pdo->prepare("SELECT * FROM `cbt_exams` WHERE `grade`='$student_grade_year_grade' AND year='$CurrentYear' AND `term`='$CurrentTerm' AND `status`='1'");
-                                                
+
 												$stmt->execute();
 												$sn = 0;
                                                 while($exam = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -54,10 +55,10 @@
                                 $staff_name=$tool->dbstr($col="staff_fname",$table="staff",$_sql="`staff_id` = '$staff'");
                                 $type=$tool->dbstr($col="name",$table="cbt_exams_type",$_sql="`id` = '$type'");
 
-								
-								
+
+
 if($exam['status']==0){
-$status = '<span class="label label-primary">Up Coming</span>';						
+$status = '<span class="label label-primary">Up Coming</span>';
 }elseif($exam['status']==1){
 $status = '<span class="label label-success">On Going</span>';
 }elseif($exam['status']==2){
@@ -68,10 +69,10 @@ $status = '<span class="label label-default">Completed</span>';
 }
 
  ?>
-													
-													
-													
-													
+
+
+
+
 													<tr>
 														<td><?php echo $sn;?></td>
 														<td><?php echo $exam['name'];?></td>
@@ -85,11 +86,10 @@ $status = '<span class="label label-default">Completed</span>';
 									<a href="?Tera=Paper&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-blue"><i class="fa fa-facebook"></i> &nbsp; Take Exam</a>
 															</div>														</td>
 													</tr>
-													
+
 												<?php }?>
-													
-													
+
+
 												</tbody>
 											</table>
 </div>
-										

@@ -8,7 +8,7 @@ echo '<script type="text/javascript">
 window.location = "'.$url.'"
 //-->
 </script>';
-}	
+}
 
 
 public function JSGet($url){
@@ -23,11 +23,11 @@ echo '<script type="text/javascript">
 
 
 public function MYCount($sql){
-	//SELECT COUNT(username) AS num FROM admins 
-		global $pdo; 
+	//SELECT COUNT(username) AS num FROM admins
+		global $pdo;
 		// please catch exception and return null, or 0
-		
-    $RegTool = $pdo->prepare($sql);	
+
+    $RegTool = $pdo->prepare($sql);
     $RegTool->execute();
     $row = $RegTool->fetch(PDO::FETCH_ASSOC);
    return $row['num'];
@@ -39,26 +39,26 @@ public function GetScoreColor($grade, $total){
 	// from percentage get color
 	  $a = $this->SweetPercentage($grade,$total);
 	  if($a<=39){
-		// that is F with bigh red 
+		// that is F with bigh red
 		return '<font color="red"> ('.$a.'%) [ F ]</font>';
 	  }elseif($a>=40 && $a<=49){
-		// that is F with bigh red 
+		// that is F with bigh red
 		return '<font color="black"> ('.$a.'%) [ E ]</font>';
 	  }elseif($a>=50 && $a<=59){
-		// that is F with bigh red 
+		// that is F with bigh red
 		return '<font color="yellow"> ('.$a.'%) [ C ]</font>';
 	  }elseif($a>=60 && $a<=69){
-		// that is F with bigh red 
+		// that is F with bigh red
 		return '<font color="blue"> ('.$a.'%) [ B ]</font>';
 	  }elseif($a>=70 && $a<=100){
-		// that is F with bigh red 
+		// that is F with bigh red
 		return '<font color="green"> ('.$a.'%) [ A ]</font>';
 	  } else{
 		  		return '<font color="red">invalid</font>';
  }
-	
-	
-	
+
+
+
 }
 
 
@@ -74,9 +74,9 @@ public function ordinal($number) {
 
 
 public function GetMax($sql){
-	//SELECT MAX(username) AS num FROM admins 
-		global $pdo; 
-    $RegTool = $pdo->prepare($sql);	
+	//SELECT MAX(username) AS num FROM admins
+		global $pdo;
+    $RegTool = $pdo->prepare($sql);
     $RegTool->execute();
     $row = $RegTool->fetch(PDO::FETCH_ASSOC);
    return $row['num'];
@@ -91,7 +91,7 @@ public function SweetPercentage($a,$b){
   //try{
 if($b==0){
 	return 0;
-}else{	  
+}else{
   return $answer = ($a/$b)*100;
 }
 
@@ -122,8 +122,8 @@ if($years==0){
 printf("%d months, %d days ago\n", $months, $days);
 }else{
 printf("%d years, %d months, %d days ago\n", $years, $months, $days);
-	
-}	
+
+}
 }
 
 
@@ -131,7 +131,7 @@ printf("%d years, %d months, %d days ago\n", $years, $months, $days);
 
 public function strIsEmpty($str){
 		return strlen(trim($str))==0? true: false;
-	} 
+	}
 
 public function setTrial(){
 	if(!isset($_SESSION['TRIAL'])){
@@ -139,7 +139,7 @@ $_SESSION['TRIAL'] = 1;
 }else{
 $_SESSION['TRIAL'] = $_SESSION['TRIAL']+1;
  echo $_SESSION['TRIAL'] .' times!';
-}	
+}
 }
 
 public function unsetTrial(){
@@ -158,45 +158,45 @@ public function brutecheck(){
 		echo '<font color="red">Out of Idea, you have entered several bad password and is now locked out </font>';
 		exit;
 	}}}
-	
-	
+
+
 	public function AlertFormError($str){
 	 echo '<div class="alert alert-danger alert-icon alert-close alert-dismissible fade in" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true"> × </span>
 							</button>
-							<i class="font-icon font-icon-warning"></i>'.$str.'</div>';	
-		
+							<i class="font-icon font-icon-warning"></i>'.$str.'</div>';
+
 	}
-	
+
 	public function ButtonShow($buttonid){
 		echo "<script>  $('#".$buttonid."').show(); </script>";
 
 		}
-		
+
 		public function ResetForm($formid){
 		echo "<script>  $('#".$formid."')[0].reset(); </script>";
 
 		}
-									
+
 	public function AlertFormSuccess($str){
-		
-		echo '<div class="alert alert-aquamarine alert-no-border alert-close alert-dismissible fade in" role="alert">
+
+		echo '<div class="alert alert-success alert-no-border alert-close alert-dismissible fade in" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>'.$str.'</div>';
 	}
-	
-	
-	
-	
-						
+
+
+
+
+
 	public function RenderHelp($u,$title,$str){
 		//$tool->RenderHelp(ur,HelpTitle,CreatingFaculty);
 
 		//$title,$str
 		/// alert help by choki
-		// put image 
+		// put image
 	print '<img align="right" title="Need Help? Click me!" class="'.$u.'" width="30" height="30" src="../CORDOVA/img/smile.png" />		
 	    <script>$(".'.$u.'").click(function(e){
 		e.preventDefault();
@@ -206,10 +206,10 @@ public function brutecheck(){
 			confirmButtonClass: "btn-success",
 			imageUrl: "../CORDOVA/img/smile.png"
 		});
-	});</script>';	
+	});</script>';
 	}
-	
-		
+
+
 // ENCODE THE URL: for connecting specific id from mail inbox id
 public function EncodeToken($id){
 $letters = 'AaBbCc67b8eFl90DdENfG67Mm89gHIV8h90qR12yZ34vYx';// 46 strings
@@ -267,8 +267,8 @@ echo '<div class="alert alert-danger alert-icon alert-close alert-dismissible fa
 	 echo '<div class="alert alert-danger alert-border-left alert-close alert-dismissible fade in" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 							</button>
-							<strong>Heads Up! </strong>'.$str.'</div>';	
-		
+							<strong>Heads Up! </strong>'.$str.'</div>';
+
 	}
 
 	public function Success($str){
@@ -304,25 +304,25 @@ public function SoftPasswordEncrypt($password){
 // decrypt the pasword during login
  public function PasswordDecrypt($password, $hash) {
 global $Okokoh;
-  $mypasshash= $this->PasswordEncrypt($password);		
+  $mypasshash= $this->PasswordEncrypt($password);
  		  if($mypasshash==$hash){
 		return true;}else{return false;}
 
 		}
 
-		
+
 		// for cbt student login
 		 public function SoftPasswordDecrypt($password, $hash) {
 //global $Obiasogu;
-  $mypasshash= $this->SoftPasswordEncrypt($password);		
+  $mypasshash= $this->SoftPasswordEncrypt($password);
  		  if($mypasshash==$hash){
 		return true;}else{return false;}
 
 		}
-		
-		
-		
-		
+
+
+
+
 
 public function secureStr($string) {
 		//global $pdo;
@@ -330,47 +330,47 @@ public function secureStr($string) {
 		//$string = $pdo->quote($string);
 		return $string;
 	}
-	
+
 public function dbClean($string) {
 		//global $pdo;
 		$string = htmlentities(stripslashes($string));
 		//$string = $pdo->quote($string);
 		return $string;
-	}	
-	
-	
+	}
+
+
 	public function HTMLEncoder($string) {// summernote control
 		//$string = htmlentities(htmlspecialchars($string));
 				$string = htmlentities($string);
 
 		return $string;
-	}	
+	}
 	public function HTMLDencoder($string) {// summernote control
 		$string = html_entity_decode(htmlspecialchars_decode($string));
 		return $string;
-	}	
-	
-	
+	}
+
+
 protected function cleanStr($string) {
 		//global $pdo;
 		$string = htmlentities(stripslashes($string));
 		//$string = $pdo->quote($string);
 		return $string;
-	}	
-	
+	}
+
 public function LogonCheck(){
 	// check if user is logged on
-	
+
 	//if(!isset($_SESSION['UserPresh']) || !isset($_SESSION['logged_in'])){
     //User not logged in. Redirect them back to the login.php page.
    // $this->PAGEREDIRECT('login');
-	
+
    // exit;
-//}	
+//}
 }
 
 public function GetValue($value,$table,$id,$index){
-	global $pdo; 
+	global $pdo;
 // return a sinlge value from table colum
 $query = "SELECT `$value` FROM `$table` WHERE `$id`= :index";
 $stmt = $pdo->prepare($query);
@@ -383,7 +383,7 @@ $stmt->execute();
  // return single value
  return $user[$value];
 
-	
+
 }
 
 public function GetData($value,$table){
@@ -393,12 +393,12 @@ $ind = '1';
 echo $this->GetValue($value,$table,$id='id',$index=$ind);
 }
 
-	
+
 public function dbstr($col,$table,$_sql){
 // collect one data from table specified
 // sample:  $faculyname=$tool->dbstr('name','core_faculty',"id = '$faculty'");
 
-global $pdo; 
+global $pdo;
 
 try{
 $query = "SELECT `$col` FROM `$table` WHERE $_sql";
@@ -420,7 +420,7 @@ $stmt->execute();
 public function ColumSumWhere($col,$table,$_sql){
 // colect the sum of a colum
 // sample:  $faculyname=$tool->ColumSum('name','core_faculty',"id = '$faculty'");
-global $pdo; 
+global $pdo;
 
 try{
 $query = "SELECT SUM(`$col`) as colsum FROM `$table` WHERE $_sql";
@@ -449,7 +449,7 @@ $stmt->execute();
 
 
 class CoreAdmin extends Helen{
-	function makeDir($path){ 
+	function makeDir($path){
 // create a folder if not existing
 return is_dir($path) || mkdir($path);
 }
@@ -467,5 +467,5 @@ function decode_imap_text($str){
 
 
 
-	
+
 ?>
