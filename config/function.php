@@ -40,19 +40,19 @@ public function GetScoreColor($grade, $total){
 	  $a = $this->SweetPercentage($grade,$total);
 	  if($a<=39){
 		// that is F with bigh red
-		return '<font color="red"> ('.$a.'%) [ F ]</font>';
+		return '<font color="red"> ('.floor($a).'%) [ F ]</font>';
 	  }elseif($a>=40 && $a<=49){
 		// that is F with bigh red
-		return '<font color="black"> ('.$a.'%) [ E ]</font>';
+		return '<font color="black"> ('.floor($a).'%) [ E ]</font>';
 	  }elseif($a>=50 && $a<=59){
 		// that is F with bigh red
-		return '<font color="yellow"> ('.$a.'%) [ C ]</font>';
+		return '<font color="yellow"> ('.floor($a).'%) [ C ]</font>';
 	  }elseif($a>=60 && $a<=69){
 		// that is F with bigh red
-		return '<font color="blue"> ('.$a.'%) [ B ]</font>';
+		return '<font color="blue"> ('.floor($a).'%) [ B ]</font>';
 	  }elseif($a>=70 && $a<=100){
 		// that is F with bigh red
-		return '<font color="green"> ('.$a.'%) [ A ]</font>';
+		return '<font color="green"> ('.floor($a).'%) [ A ]</font>';
 	  } else{
 		  		return '<font color="red">invalid</font>';
  }
@@ -185,6 +185,9 @@ public function brutecheck(){
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>'.$str.'</div>';
+               self::ResetForm('logonForm');
+
+
 	}
 
 

@@ -106,7 +106,7 @@ if(isset($_POST['email'])){
             $StudentBio->bindValue(':admit', 1, PDO::PARAM_INT);
             $StudentBio->bindValue(':std_bio_mobile', $p_phone, PDO::PARAM_STR);
             $StudentBio->execute();
-             $$StudentBioID = $pdo->lastInsertId();
+            $StudentBioID = $pdo->lastInsertId();
 
 
             // student login table

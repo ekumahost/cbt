@@ -83,7 +83,8 @@ $status = '<span class="label label-default">Completed</span>';
 														<td><?php echo $status;?></td>
 														<td>
 															<div class="btn-group btn-group-xs">
-									<a href="?Tera=Paper&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-blue"><i class="fa fa-facebook"></i> &nbsp; Take Exam</a>
+									<a href="?Tera=Paper&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-blue"><i class="fa fa-facebook"></i> &nbsp; Take Exam</a> <br><hr>
+                                                                <a target="_blank" href="?Tera=ExamResult&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-green"> &nbsp; View Result</a>
 															</div>														</td>
 													</tr>
 

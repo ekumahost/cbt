@@ -6,9 +6,9 @@
 			<div class="table-responsive">
 
 
-			
-			
-					
+
+
+
 	<table width="100%" class="table table-striped table-bordered table-hover" id="table">
 							<thead>
 							<tr>
@@ -25,27 +25,31 @@
 							</tr>
 							</thead>
 							<tbody>
-							
+
 						<?php
 						$pushanswers = "SELECT * FROM `cbt_subscription` WHERE `exam` = '$id'";
 						$ans = $pdo->prepare($pushanswers);
                         $ans->execute();
-						
-						while($lista = $ans->fetch(PDO::FETCH_ASSOC)){
-						$listqia = $lista['id'];
-						$ansStudent = $lista['student'];
-						$student =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$ansStudent'").' ';
-						$student .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$ansStudent'");
-						$studentReg =$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'");
 
-						
+						while($lista = $ans->fetch(PDO::FETCH_ASSOC)){
+						       $listqia = $lista['id'];
+						        $ansStudent = $lista['student'];
+
+                            $student =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$ansStudent'").' ';
+                            $student .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$ansStudent'") .'(';
+                            $student .=$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'") . ') [';
+                            $student .=$tool->dbstr('std_bio_mobile','studentbio',"studentbio_id = '$ansStudent'") . ']';
+
+                            $studentReg =$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'");
+
+
 $CountAttempted= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$answers_table` WHERE `student`='$ansStudent' AND `exam` = '$id'");
 // update subscription with this
 $CountCorrectAnswer= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$answers_table` a JOIN `$question_table` b ON `a`.`answer`= `b`.`ar` WHERE `a`.`student` ='$ansStudent' AND `a`.`exam` = '$id' AND `a`.`question_id` =`b`.`id`");
 
-					
-					
-						?>	
+
+
+						?>
 						<tr class="odd gradeX">
 								<td><?php echo $sn;?></td>
 								<td> <p><?php echo $student;?></p>							    </td>
@@ -57,10 +61,10 @@ $CountCorrectAnswer= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$answers_
 					          <td>
 						<!--  <a href="#"><b><span class="btn btn-primary">Transcript Card</span></b></a> -->															</td>
 							</tr>
-							
+
 						<?php }?>
 							</tbody>
 							</table>
-			  </div>   
+			  </div>
 						 </div><br><br><br>
         </section>

@@ -3,7 +3,7 @@
                 View Candidates
             </header>
             <div class="card-block">
-			
+
 
 
 
@@ -18,19 +18,19 @@
 									 Student								</th>
 								<th width="10%">started</th>
 								<th width="9%">stopped</th>
-								<th width="9%">Submited</th>
+								<th width="9%">Submitted</th>
 								<th width="14%">
 									 Status								</th>
 							</tr>
 							</thead>
 							<tbody>
-							
+
 						<?php
 						//echo date("Y-m-d h:i:sa");
 						$pushcat = "SELECT * FROM `cbt_subscription` WHERE `exam` = '$id'";
 						$stmt = $pdo->prepare($pushcat);
                         $stmt->execute();
-						
+
                         while($list = $stmt->fetch(PDO::FETCH_ASSOC)){
 						$sub_id = $list['id'];
 						$student = $list['student'];
@@ -41,43 +41,45 @@
 			       			$exam_end_time = date("Y-m-d h:i:sa", $exam_end_time);
 			                  $submit_paper_time = date("Y-m-d h:i:sa", $submit_paper_time);
 
-						
-						$studentname =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$student'").' ';
-			       		$studentname .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$student'");
 
-			
+						$studentname =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$student'").' ';
+			       		$studentname .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$student'") .'(';
+			       		$studentname .=$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$student'") . ') [';
+			       		$studentname .=$tool->dbstr('std_bio_mobile','studentbio',"studentbio_id = '$student'") . ']';
+
+
 if($list['status']==1){
 $status = '<span class="label label-primary">Subscribed</span>';
 }elseif($list['status']==0){
 	$status = '<span class="label label-default">Pending</span>';
 }elseif($list['status']==2){
-	$status = '<span class="label label-success">Submited Paper</span>';	
+	$status = '<span class="label label-success">Submitted Paper</span>';
 }else{
-	$status = '<span class="label label-danger">unknown</span>';	
-	
-	
+	$status = '<span class="label label-danger">unknown</span>';
+
+
 }
-	
-						
-						?>	
+
+
+						?>
 						<tr class="odd gradeX">
 								<td><?php echo $sub_id;?></td>
 								<td> <p><?php echo $studentname;?></p>							    </td>
 								<td class="center"><?php echo $exam_start_time;?></td>
 								<td class="center"><?php echo $exam_end_time;?></td>
 						        <td class="center"><?php echo $submit_paper_time;?></td>
-					          <td>	
-															
-												
+					          <td>
+
+
 								<?php echo  $status;?>
 					<br /></td>
 							</tr>
-							
+
 						<?php }?>
 							</tbody>
 							</table>
-			  </div>   
-										
+			  </div>
+
 
 
 

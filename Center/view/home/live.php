@@ -85,8 +85,10 @@ $status = '<span class="label label-default">Completed</span>';
 															<?php if($examstatus!=1){
 																echo 'no action required';
 															}else{?>
-									<a href="?Tera=Paper&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-lg btn-blue"><i class="fa fa-book"></i> &nbsp; Take Exam</a>
-															<?php }?>
+									<a href="?Tera=Paper&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-lg btn-blue"><i class="fa fa-book"></i> &nbsp; Take Exam</a> <br><hr>
+                                                                <a target="_blank" href="?Tera=ExamResult&token=<?php $tool->EncodeToken($exam['id']);?>" class="btn btn-green"> &nbsp; View Result</a>
+
+                                                            <?php }?>
 															</div>														</td>
 													</tr>
 

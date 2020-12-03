@@ -83,8 +83,8 @@ $status = '<span class="label label-default">Completed</span>';
 
 
 						<form id="PaperForm" method="post" class="form-horizontal" role="form">
-                        <input type="hidden" name="paper_id" value="<?php echo $paper_id;?>"> </input>
-                        <input type="hidden" name="PaperForm" value="<?php echo $paper_id;?>"> </input>
+                        <input type="hidden" name="paper_id" value="<?php echo $paper_id;?>"/>
+                        <input type="hidden" name="PaperForm" value="<?php echo $paper_id;?>"/>
 
 					<font color="red">Warning</font>: once you click "START Exam" your time starts to count.<br><br>
                     <?php if($exam['status']==1){?>

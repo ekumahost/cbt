@@ -38,21 +38,26 @@ $firstrow = 4;
 							$total_result=$total_result+1;
 						$listqia = $il['id'];
 						$ansStudent = $il['student'];
-						$student =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$ansStudent'").' ';
-						$student .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$ansStudent'");
-						$studentReg =$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'");
+                            $student =$tool->dbstr('studentbio_lname','studentbio',"studentbio_id = '$ansStudent'").' ';
+                            $student .=$tool->dbstr('studentbio_fname','studentbio',"studentbio_id = '$ansStudent'") .'(';
+                            $student .=$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'") . ') [';
+                            $student .=$tool->dbstr('std_bio_mobile','studentbio',"studentbio_id = '$ansStudent'") . ']';
 
-						
+
+
+                            $studentReg =$tool->dbstr('studentbio_internalid','studentbio',"studentbio_id = '$ansStudent'");
+
+
 //$CountAttempted= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$answers_table` WHERE `student`='$ansStudent' AND `exam` = '$Exam_id'");
 // update subscription with this
 $CountCorrectAnswer= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$answers_table` a JOIN `$question_table` b ON `a`.`answer`= `b`.`ar` WHERE `a`.`student` ='$ansStudent' AND `a`.`exam` = '$Exam_id' AND `a`.`question_id` =`b`.`id`");
 ///--------------->
 
-$a = 'A'.$i;	
+$a = 'A'.$i;
 $b = 'B'.$i;
 $c = 'C'.$i;
 $d = 'D'.$i;
-$e = 'E'.$i;	
+$e = 'E'.$i;
 $objPHPExcel->getActiveSheet()->setCellValue($a, $studentReg);
 $objPHPExcel->getActiveSheet()->setCellValue($b, $student);
 $objPHPExcel->getActiveSheet()->setCellValue($c, $CountCorrectAnswer);
@@ -79,7 +84,7 @@ $objPHPExcel->getActiveSheet()->getComment($tarow)->getText()->createTextRun("\r
 $objPHPExcel->getActiveSheet()->getComment($tarow)->getText()->createTextRun('total result downloaded');
 $row = $row+3; // we set to the next row again
 
-$appendsign = $row+2; 
+$appendsign = $row+2;
 
 
 /*$objPHPExcel->getActiveSheet()->getComment('E13')->setWidth('100pt');
@@ -167,8 +172,8 @@ $seturl = 'E'.$row;
 $termrow = $row+1;
 $setterms = 'E'.$termrow;
 
-$objPHPExcel->getActiveSheet()->setCellValue($seturl, 'www.ekumahost.net');
-$objPHPExcel->getActiveSheet()->getCell($seturl)->getHyperlink()->setUrl('http://www.ekumahost.net');
+$objPHPExcel->getActiveSheet()->setCellValue($seturl, 'www.enugusme.xyz');
+$objPHPExcel->getActiveSheet()->getCell($seturl)->getHyperlink()->setUrl('http://enugusme.xyz');
 $objPHPExcel->getActiveSheet()->getCell($seturl)->getHyperlink()->setTooltip('Navigate to website');
 $objPHPExcel->getActiveSheet()->getStyle($seturl)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
 

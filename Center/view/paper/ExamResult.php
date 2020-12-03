@@ -17,7 +17,9 @@ $type= $exam['type'];
  $cbt_question_table=$tool->dbstr($col="question_table",$table="cbt_subjects",$_sql="`id` = '$subject'");
  $cbt_answer_table=$tool->dbstr($col="answer_table",$table="cbt_subjects",$_sql="`id` = '$subject'");
 
- $tool->Warn("You submitted your Paper! WE HAVE NOT COMPUTED YOUR RESULT YET, PLEASE CHECK BACK LATER.");
+$CountCorrectAnswer= $tool->MyCount("SELECT COUNT(answer) AS num FROM `$cbt_answer_table` a JOIN `$cbt_question_table` b ON `a`.`answer`= `b`.`ar` WHERE `a`.`student` ='$StudentID' AND `a`.`exam` = '$paper_id' AND `a`.`question_id` =`b`.`id`");
+
+ //$tool->Warn("You submitted your Paper! WE HAVE NOT COMPUTED YOUR RESULT YET, PLEASE CHECK BACK LATER.");
 ?>
 
 
@@ -131,12 +133,12 @@ $type= $exam['type'];
         /* end IOS targeting */
     </style>
 
-<body bgcolor="#E1E1E1" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<body  bgcolor="#E1E1E1" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 
 <!-- CENTER THE EMAIL // -->
 
 <center style="background-color:#E1E1E1;">
-    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="table-layout: fixed;max-width:100% !important;width: 100% !important;min-width: 100% !important;">
+    <table  border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style="table-layout: fixed;max-width:100% !important;width: 100% !important;min-width: 100% !important; padding: 10px">
         <tr>
             <td align="center" valign="top" id="bodyCell">
 
@@ -166,7 +168,7 @@ $type= $exam['type'];
                                                     <table border="0" cellpadding="30" cellspacing="0" width="100%">
                                                         <tr>
                                                             <td align="center" valign="top" class="textContent">
-                                                                <img src="https://www.enugusme.en.gov.ng/wp-content/uploads/2018/05/cropped-enugu-sme-logo-d.png" class="flexibleImage" style="max-height: 75px;width: auto;display: block;" alt="Geena logo" />
+                                                                <img src="https://www.enugusme.en.gov.ng/wp-content/uploads/2018/05/cropped-enugu-sme-logo-d.png" class="flexibleImage" style="max-height: 75px;width: auto;display: block;" alt="" />
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -227,9 +229,9 @@ $type= $exam['type'];
 
                     <!-- MODULE ROW // -->
                     <tr>
-                        <td align="center" valign="top">
+                        <td style="padding: 15px" align="center" valign="top">
                             <!-- CENTERING TABLE // -->
-                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <table  border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
                                     <td align="center" valign="top">
                                         <!-- FLEXIBLE CONTAINER // -->
@@ -241,17 +243,17 @@ $type= $exam['type'];
                                                             <td align="center" valign="top">
 
                                                                 <!-- CONTENT TABLE // -->
-                                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <table  border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                     <tr>
                                                                         <td valign="top" class="textContent">
 
-                                                                            <h3 mc:edit="header" style="color:#2D2E30;line-height:125%;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:19px;margin-top:0;margin-bottom:2rem;text-align:left;">Hi Amy,</h3>
+                                                                            <h3 mc:edit="header" style="color:#2D2E30;line-height:125%;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:19px;margin-top:0;margin-bottom:2rem;text-align:left;">Hi <?php echo $Student;?>,</h3>
                                                                             <h3 mc:edit="header" style="color:#1A37C8;line-height:125%;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:21px;font-weight:bold;margin-top:0;margin-bottom:2rem;text-align:left;">Enugu SME Financial Literacy test Results!</h3>
                                                                             <div mc:edit="body" style="text-align:left;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:17px;margin-bottom:10px;color:#2D2E30;line-height:1.6rem;">
-                                                                                You scored <b>60%</b> in our just concluded Financial Literacy test!
+                                                                                You scored <b><?php echo $tool->GetScoreColor($CountCorrectAnswer, $total_question);?></b> in our just concluded <b> <?=$cbt_subject_name?> </b>
                                                                             </div>
                                                                             <div mc:edit="body" style="text-align:left;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:17px;margin-bottom:0;color:#2D2E30;line-height:1.6rem;">
-                                                                                Click here to start another test after 48 hours!
+                                                                                You can start another test after 48 hours!
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -291,7 +293,7 @@ $type= $exam['type'];
                                                     <table border="0" cellpadding="0" cellspacing="0" width="40%" class="emailButton" style="background-color: #1A37C8; border-radius: 3px; border: 3px solid #EEEFF2;">
                                                         <tr>
                                                             <td align="center" class="buttonContent" style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
-                                                                <a style="color:#FFFFFF;text-decoration:none;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:15px;line-height:135%;" href="#" target="_blank">Start New Test</a>
+                                                                <a style="color:#FFFFFF;text-decoration:none;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:15px;line-height:135%;" href="<?=siteurl?>" target="_blank">Start New Test</a>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -330,9 +332,9 @@ $type= $exam['type'];
                                                                     <tr>
                                                                         <td valign="top" class="textContent">
 
-                                                                            <h3 mc:edit="header" style="line-height:125%;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;margin-top:0;margin-bottom:3px;text-align:left;color:#2D2E30;">Regards,</h3>
+                                                                            <h3 mc:edit="header" style="line-height:125%;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;margin-top:0;margin-bottom:3px;text-align:left;color:#2D2E30;">&nbsp;&nbsp;&nbsp;Regards,</h3>
                                                                             <div mc:edit="body" style="text-align:left;font-family:QuietSans,Helvetica,Arial,sans-serif;font-size:17px;margin-bottom:0;color:#2D2E30;line-height:135%;">
-                                                                                Enugu SME
+                                                                                &nbsp;&nbsp;&nbsp; Enugu SME
                                                                             </div>
                                                                         </td>
                                                                     </tr>
